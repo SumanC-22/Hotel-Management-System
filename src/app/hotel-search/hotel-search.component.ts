@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subject, takeUntil } from 'rxjs';
+
 import { HotelService } from '../hotel.service';
 import { Hotel } from '../models/hotel.model';
 
 @Component({
   selector: 'app-hotel-search',
   templateUrl: './hotel-search.component.html',
-  styleUrls: ['./hotel-search.component.css'],
+  styleUrls: ['./hotel-search.component.css']
 })
-export class HotelSearchComponent implements OnInit {
+export class HotelSearchComponent implements OnInit, OnDestroy {
 
-  hotels$: Observable<Hotel[]>;
-  filteredHotels$: Observable<Hotel[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<string | null>;
-  currentPage$: Observable<number>;
+  hotels$!: Observable<Hotel[]>;
+  filteredHotels$!: Observable<Hotel[]>;
+  loading$!: Observable<boolean>;
+  error$!: Observable<string | null>;
+  currentPage$!: Observable<number>;
 
-  pageSize: number;
+  pageSize = 10;
   searchTerm = '';
+
+  private destroy$ = new Subject<void>();
 
   constructor(public hotelService: HotelService) {
 
@@ -26,15 +29,18 @@ export class HotelSearchComponent implements OnInit {
     this.loading$ = this.hotelService.loading$;
     this.error$ = this.hotelService.error$;
     this.currentPage$ = this.hotelService.currentPage$;
+
     this.pageSize = this.hotelService.pageSize;
 
   }
 
   ngOnInit(): void {
 
-    this.hotelService.searchTerm$.subscribe((term) => {
-      this.searchTerm = term;
-    });
+    this.hotelService.searchTerm$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((term) => {
+        this.searchTerm = term;
+      });
 
   }
 
@@ -50,7 +56,9 @@ export class HotelSearchComponent implements OnInit {
   }
 
   selectHotel(hotel: Hotel): void {
+
     this.hotelService.navigateToDetails(hotel.id);
+
   }
 
   changePage(page: number): void {
@@ -72,6 +80,13 @@ export class HotelSearchComponent implements OnInit {
       { length: pages },
       (_, i) => i + 1
     );
+
+  }
+
+  ngOnDestroy(): void {
+
+    this.destroy$.next();
+    this.destroy$.complete();
 
   }
 

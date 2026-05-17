@@ -221,15 +221,8 @@ export class HotelDetailsComponent implements OnInit {
   };
 
   // Tab Navigation State
-  tabs = [
-    { label: 'Home', path: 'home' },
-    { label: 'About', path: 'about' },
-    { label: 'Classification', path: 'classification' },
-    { label: 'Products', path: 'products' },
-    { label: 'Terms', path: 'terms' },
-    { label: 'Finance', path: 'finance' },
-    { label: 'Notes', path: 'notes' }
-  ];
+  tabs = ['Home', 'About', 'Classification', 'Products', 'Terms', 'Finance', 'Notes'];
+  activeTab = 'Home';
 
   constructor(private route: ActivatedRoute, private hotelService: HotelService) {}
 

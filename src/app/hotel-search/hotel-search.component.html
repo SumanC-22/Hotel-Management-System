@@ -55,7 +55,7 @@
       
       <!-- Thumbnail -->
       <div class="relative h-48 overflow-hidden">
-        <img [src]="hotel.image || 'assets/placeholder-hotel.jpg'" [alt]="hotel.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+        <img [src]="hotel.imageUrl || 'assets/placeholder-hotel.jpg'" [alt]="hotel.name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-sm font-bold text-slate-900 shadow-sm">
           ★ {{ hotel.rating }}
         </div>

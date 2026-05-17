@@ -1,0 +1,12 @@
+<div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+  <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Booking Overview</p>
+  <div class="mt-4 grid gap-3">
+    <div *ngFor="let bar of bars" class="grid grid-cols-[5rem_1fr_auto] items-center gap-3">
+      <span class="text-slate-600">{{ bar.month }}</span>
+      <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
+        <div [style.width.%]="bar.width" class="h-full rounded-full bg-slate-900"></div>
+      </div>
+      <span class="text-sm font-semibold text-slate-900">{{ bar.value }}</span>
+    </div>
+  </div>
+</div>

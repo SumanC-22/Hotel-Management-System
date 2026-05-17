@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: calc(100vh - 55px);
+}
+
+.page-content,
+.details-layout {
+  width: min(1200px, 100% - 32px);
+  margin: 24px auto;
+}
+
+.details-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.button {
+  border: 1px solid transparent;
+  background: #0f766e;
+  color: white;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.button.secondary {
+  background: transparent;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.button.outline {
+  background: transparent;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.83rem;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.input-group input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.section-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.section-heading {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 12px 0 0;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.hotel-card {
+  display: grid;
+  gap: 10px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  background: white;
+}
+
+.hotel-card h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.hotel-card p {
+  margin: 0;
+  color: #475569;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  min-width: 2.5rem;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  border: none;
+  color: #334155;
+}
+
+.pagination button.active {
+  background: #0f766e;
+  color: white;
+}
+
+.tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-list button {
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #334155;
+}
+
+.tab-list button.active {
+  background: #0f766e;
+  color: white;
+}
+
+.map-frame {
+  width: 100%;
+  min-height: 300px;
+  border-radius: 18px;
+  border: none;
+}
+
+footer {
+  padding: 16px 24px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+  .details-layout {
+    display: block;
+  }
+}
+
+/* Sidebar adjustments when using Bootstrap */
+nav[role="navigation"], nav {
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+
+/* Card hover effect */
+.hotel-card, .card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.hotel-card:hover, .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+}
+
+/* Pagination using Bootstrap styles but maintain pill look */
+.pagination button {
+  min-width: 2.75rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+.pagination button.active {
+  background: #0d6efd;
+  color: #fff;
+}
+
+/* Small-screen sidebar toggle placeholder */
+#menuToggle {
+  border: none;
+}
+
+@media (max-width: 767px) {
+  nav.d-none.d-md-flex {
+    display: none !important;
+  }
+}

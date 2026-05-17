@@ -1,0 +1,70 @@
+<div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" *ngIf="hotel">
+  <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
+    <button class="rounded-full px-4 py-2 text-sm font-semibold transition" [ngClass]="activeTab==='home' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'" (click)="selectTab('home')">Home</button>
+    <button class="rounded-full px-4 py-2 text-sm font-semibold transition" [ngClass]="activeTab==='about' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'" (click)="selectTab('about')">About</button>
+    <button class="rounded-full px-4 py-2 text-sm font-semibold transition" [ngClass]="activeTab==='classification' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'" (click)="selectTab('classification')">Classification</button>
+    <button class="rounded-full px-4 py-2 text-sm font-semibold transition" [ngClass]="activeTab==='services' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'" (click)="selectTab('services')">Services</button>
+    <button class="rounded-full px-4 py-2 text-sm font-semibold transition" [ngClass]="activeTab==='terms' ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'" (click)="selectTab('terms')">Terms</button>
+  </div>
+
+  <div *ngIf="activeTab === 'home'" class="mt-6 space-y-6">
+    <app-dashboard-widgets [hotel]="hotel"></app-dashboard-widgets>
+    <app-booking-chart [hotel]="hotel"></app-booking-chart>
+    <app-hotel-map [hotel]="hotel"></app-hotel-map>
+  </div>
+
+  <div *ngIf="activeTab === 'about'" class="mt-6 space-y-6">
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm uppercase tracking-[0.24em] text-slate-500">About {{ hotel.name }}</p>
+      <p class="mt-3 text-slate-600">{{ hotel.description }}</p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <div><strong class="text-slate-900">Provider</strong><p class="text-slate-700">{{ hotel.provider }}</p></div>
+        <div><strong class="text-slate-900">Type</strong><p class="text-slate-700">{{ hotel.hotelType }}</p></div>
+        <div><strong class="text-slate-900">Location</strong><p class="text-slate-700">{{ hotel.location }}, {{ hotel.state }}</p></div>
+        <div><strong class="text-slate-900">Country</strong><p class="text-slate-700">{{ hotel.country }}</p></div>
+      </div>
+    </div>
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Contact Details</p>
+      <div class="mt-4 space-y-3 text-slate-700">
+        <p><strong>Email:</strong> {{ hotel.email }}</p>
+        <p><strong>Phone:</strong> {{ hotel.phone }}</p>
+        <p><strong>Address:</strong> {{ hotel.street }}, {{ hotel.location }}, {{ hotel.pincode }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'classification'" class="mt-6">
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Hotel Classification</p>
+      <div class="mt-4 space-y-2 text-slate-700">
+        <p><strong>Type:</strong> {{ hotel.hotelType }}</p>
+        <p><strong>Rating:</strong> {{ hotel.rating }} / 5.0</p>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700" *ngFor="let amenity of hotel.amenities">{{ amenity }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'services'" class="mt-6">
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Available Services</p>
+      <div class="mt-4 grid gap-3">
+        <div *ngFor="let amenity of hotel.amenities" class="rounded-2xl border border-slate-200 bg-white p-4 text-slate-700">{{ amenity }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'terms'" class="mt-6">
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+      <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Terms & Conditions</p>
+      <div class="mt-4 space-y-3 text-slate-600">
+        <p><strong>Check-in:</strong> 2:00 PM onwards. Early check-in is subject to availability.</p>
+        <p><strong>Check-out:</strong> 12:00 PM noon. Late check-out requests are subject to availability.</p>
+        <p><strong>Cancellation Policy:</strong> Free cancellation up to 48 hours before check-in.</p>
+        <p><strong>Payment:</strong> All payments are processed in {{ hotel.currency }}.</p>
+      </div>
+    </div>
+  </div>
+</div>

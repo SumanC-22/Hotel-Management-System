@@ -1,0 +1,32 @@
+export interface Hotel {
+  id: number;
+  name: string;
+  shortName?: string;
+  provider?: string;
+  hotelType?: string;
+  currency?: string;
+  street?: string;
+  state?: string;
+  country?: string;
+  pincode?: string;
+  email?: string;
+  phone?: string;
+  location: string;
+  latitude?: number;
+  longitude?: number;
+  rating: number;
+  pricePerNight: number;
+  availableRooms: number;
+  imageUrl: string;
+  description: string;
+  tags: string[];
+  monthlyBookings: number[];
+  confirmedBookings?: number;
+  onRequestBookings?: number;
+  lastUsed?: string;
+  nextBookingDate: string;
+  nextBooking: string;
+  openComplaints: number;
+  totalComplaints: number;
+  totalAmount: number;
+}

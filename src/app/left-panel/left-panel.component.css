@@ -1,0 +1,12 @@
+label {
+  display: block;
+  width: 100%;
+}
+label strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #334155;
+}
+textarea {
+  min-height: 120px;
+}

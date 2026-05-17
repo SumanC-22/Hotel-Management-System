@@ -1,0 +1,17 @@
+<header class="sticky top-0 z-10 rounded-b-[2rem] border-b border-slate-200 bg-white/95 px-4 py-4 shadow-sm backdrop-blur-xl">
+  <div class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap items-center gap-3">
+      <button class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-800" (click)="navigateToSearch()">
+        HotelManager
+      </button>
+      <div class="flex items-center gap-2 text-sm text-slate-600">
+        <button class="rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-200" (click)="navigateToSearch()">Hotels</button>
+        <span *ngIf="(currentView$ | async) === 'details'" class="text-slate-500">/ Details</span>
+      </div>
+    </div>
+
+    <div *ngIf="(currentView$ | async) === 'details'">
+      <button class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50" (click)="navigateToSearch()">Search</button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,83 @@
+<div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" *ngIf="loading">Loading hotel details...</div>
+
+<div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" *ngIf="!loading && error">
+  <p class="mb-4 text-sm font-semibold text-red-600">{{ error }}</p>
+  <button class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50" (click)="navigateBack()">Back to Search</button>
+</div>
+
+<div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm" *ngIf="!loading && hotel">
+  <button class="mb-4 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50" (click)="navigateBack()">Back to Hotels</button>
+  <div class="relative overflow-hidden rounded-[1.25rem]">
+    <img [src]="hotel.imageUrl" [alt]="hotel.name" class="h-[220px] w-full object-cover" />
+    <span class="absolute left-4 bottom-4 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700">{{ hotel.hotelType }}</span>
+    <span class="absolute right-4 top-4 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700">Rating {{ hotel.rating }}</span>
+  </div>
+
+  <div class="mt-6 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+    <div>
+      <h2 class="text-2xl font-semibold text-slate-900">{{ hotel.name }}</h2>
+      <p class="mt-2 text-slate-600">{{ hotel.provider }}</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <button class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50" *ngIf="!isEditing" (click)="startEdit()">Edit</button>
+      <div *ngIf="isEditing" class="flex flex-wrap gap-2">
+        <button class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800" (click)="save()">Save</button>
+        <button class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="mt-4 text-slate-600">{{ hotel.description }}</p>
+
+  <div class="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+    <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Contact Information</p>
+    <div class="mt-4 grid gap-3">
+      <p class="text-slate-700"><strong>Address:</strong> {{ hotel.street }}, {{ hotel.location }}, {{ hotel.state }} {{ hotel.pincode }}</p>
+      <p class="text-slate-700"><strong>Email:</strong> {{ hotel.email }}</p>
+      <p class="text-slate-700"><strong>Phone:</strong> {{ hotel.phone }}</p>
+      <p class="text-slate-700"><strong>Currency:</strong> {{ hotel.currency }}</p>
+      <p class="text-slate-700"><strong>Hotel Type:</strong> {{ hotel.hotelType }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!isEditing" class="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+    <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Amenities</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700" *ngFor="let amenity of hotel.amenities">{{ amenity }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="isEditing" class="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+    <p class="text-sm uppercase tracking-[0.24em] text-slate-500">Edit Hotel</p>
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      <label class="space-y-2 text-sm text-slate-700">
+        <span>Name</span>
+        <input [(ngModel)]="editForm.name" name="name" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3" />
+      </label>
+      <label class="space-y-2 text-sm text-slate-700">
+        <span>Provider</span>
+        <input [(ngModel)]="editForm.provider" name="provider" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3" />
+      </label>
+      <label class="space-y-2 text-sm text-slate-700">
+        <span>Location</span>
+        <input [(ngModel)]="editForm.location" name="location" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3" />
+      </label>
+      <label class="space-y-2 text-sm text-slate-700">
+        <span>Hotel Type</span>
+        <input [(ngModel)]="editForm.hotelType" name="hotelType" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3" />
+      </label>
+      <label class="space-y-2 text-sm text-slate-700">
+        <span>Email</span>
+        <input [(ngModel)]="editForm.email" name="email" type="email" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3" />
+      </label>
+      <label class="space-y-2 text-sm text-slate-700">
+        <span>Phone</span>
+        <input [(ngModel)]="editForm.phone" name="phone" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3" />
+      </label>
+      <label class="col-span-1 space-y-2 text-sm text-slate-700 md:col-span-2">
+        <span>Description</span>
+        <textarea [(ngModel)]="editForm.description" name="description" rows="4" class="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3"></textarea>
+      </label>
+    </div>
+  </div>
+</div>

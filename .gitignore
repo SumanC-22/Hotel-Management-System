@@ -1,0 +1,32 @@
+.angular/cache/17.3.17/angular-webpack/1f0050ee87861c5ff0ead191d5bf1b9cc5991159/index.pack
+# Angular
+/dist
+/tmp
+/out-tsc
+
+# Node modules
+/node_modules
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# IDE files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Angular cache
+.angular/cache
+
+# Coverage
+/coverage
+
+src/assets/data/
+src/environments/environment.ts

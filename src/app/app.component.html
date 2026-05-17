@@ -1,0 +1,50 @@
+<div class="d-flex vh-100 bg-light">
+	<!-- Sidebar -->
+	<nav class="d-none d-md-flex flex-column bg-white border-end p-3" style="width:260px">
+		<a class="d-flex align-items-center mb-4 text-decoration-none" routerLink="/">
+			<img src="assets/angular-logo.svg" alt="logo" width="36" class="me-2">
+			<span class="fs-5 fw-semibold">Hotel Dashboard</span>
+		</a>
+
+		<ul class="nav nav-pills flex-column mb-auto">
+			<li class="nav-item mb-1">
+				<a routerLink="/dashboard" class="nav-link text-dark"> <i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+			</li>
+			<li class="nav-item mb-1">
+				<a routerLink="/search" class="nav-link text-dark"> <i class="bi bi-search me-2"></i> Search</a>
+			</li>
+			<li class="nav-item mb-1">
+				<a routerLink="/hotel" class="nav-link text-dark"> <i class="bi bi-building me-2"></i> Hotels</a>
+			</li>
+			<li class="nav-item mt-3">
+				<small class="text-muted">Analytics</small>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text-dark" routerLink="/dashboard"> <i class="bi bi-bar-chart me-2"></i> Metrics</a>
+			</li>
+		</ul>
+
+		<div class="mt-auto pt-3">
+			<button class="btn btn-outline-secondary w-100">Settings</button>
+		</div>
+	</nav>
+
+	<!-- Main content -->
+	<div class="flex-grow-1 overflow-auto">
+		<header class="d-flex align-items-center justify-content-between p-3 border-bottom bg-white">
+			<div class="d-flex align-items-center gap-3">
+				<button class="btn btn-light d-md-none" id="menuToggle"><i class="bi bi-list"></i></button>
+				<h4 class="mb-0">Hotel Management</h4>
+			</div>
+			<div class="d-flex align-items-center gap-3">
+				<button class="btn btn-sm btn-outline-primary">Profile</button>
+			</div>
+		</header>
+
+		<main class="p-3" style="min-height: calc(100vh - 64px);">
+			<div class="container-fluid">
+				<router-outlet></router-outlet>
+			</div>
+		</main>
+	</div>
+</div>
